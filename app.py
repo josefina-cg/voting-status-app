@@ -84,9 +84,6 @@ user_id = st.text_input(label="", key="rut_input", placeholder="Ej: 12345678-9",
 st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
 # ---- CHECK VOTING STATUS ----
-st.write("🧪 Columns:", data.columns.tolist())
-st.write("🧪 Sample Data:")
-st.write(data.head())
 
 if user_id:
     clean_ruts = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
