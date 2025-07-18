@@ -89,13 +89,14 @@ if user_id:
     else:
         st.error("Su RUT no fue encontrado en nuestros registros.")
 
-# ---- FOOTER: CONTACT INFO ----
+# ---- FOOTER: CENTERED CONTACT INFO ----
 st.markdown("""
     <style>
     .footer {
         position: fixed;
         bottom: 10px;
-        right: 20px;
+        left: 50%;
+        transform: translateX(-50%);
         background-color: #f9f9f9;
         padding: 10px 15px;
         border-radius: 8px;
@@ -124,8 +125,5 @@ st.markdown("""
     <div class="footer">
         <img src="https://raw.githubusercontent.com/josefina-cg/voting-status-app/main/BallotBox%20Logo.png" alt="Logo">
         <span>¿Necesitas ayuda?<br>Contáctanos al Whatsapp: <a href="https://wa.me/56923987722" target="_blank">+56 9 2398 7722</a></span>
-
     </div>
 """, unsafe_allow_html=True)
-
-
