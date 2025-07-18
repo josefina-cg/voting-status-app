@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Replace with your Google Sheet export link
-sheet_url = "https://docs.google.com/spreadsheets/d/1bLu7UgEt7aS9a39tUYUt9n6_fSjNc5qQ/edit?usp=sharing&ouid=115455914725839001108&rtpof=true&sd=true"
+sheet_url = "https://docs.google.com/spreadsheets/d/1bLu7UgEt7aS9a39tUYUt9n6_fSjNc5qQ/export?format=csv"
 
 # Load the Excel file
 @st.cache_data
