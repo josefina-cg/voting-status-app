@@ -89,9 +89,6 @@ if user_id:
 
     result = data[clean_ruts == input_rut]
 
-    st.write("🧪 Input RUT:", input_rut)
-    st.write("🧪 Result found:", result)
-
     if not result.empty:
         status = result.iloc[0]["Status"]
         st.success(f"Estado: {status}")
