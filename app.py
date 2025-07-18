@@ -108,7 +108,6 @@ if user_id:
         else:
             st.info(f"Estado: {status}")
     else:
-        st.error("Su RUT no fue encontrado en nuestros registros.")
         st.markdown("""
     <div style="background-color:#000000; padding:20px; border-radius:8px; color:#ffffff; font-size:20px; font-weight:bold;">
         ⚠️ Su RUT no fue encontrado en nuestros registros.
