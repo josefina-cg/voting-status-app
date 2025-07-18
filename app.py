@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # ---- PAGE CONFIGURATION ----
-st.set_page_config(page_title="Voting Status Checker", layout="centered")
+st.set_page_config(page_title="Sindicato Interempresa Salud UC", layout="centered")
 
 # ---- HEADER: LOGO + ORG NAME (Mobile-friendly Flexbox) ----
 st.markdown("""
@@ -60,8 +60,6 @@ def load_data():
 
 data = load_data()
 data.columns = data.columns.str.strip()  # Remove trailing spaces
-
-st.write("🧪 Columns:", data.columns.tolist())  # See exactly what they are
 
 # ---- STYLES FOR BIG INPUT FIELD ----
 st.markdown("""
