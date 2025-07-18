@@ -58,8 +58,8 @@ sheet_url = "https://docs.google.com/spreadsheets/d/1bLu7UgEt7aS9a39tUYUt9n6_fSj
 def load_data():
     return pd.read_csv(sheet_url)
 
-data = load_data()
 data.columns = data.columns.str.strip()
+st.write("🧪 Column names:", data.columns.tolist())
 
 # DEBUGGING: Print the first few rows of the sheet
 st.write("🧪 Preview of loaded data:")
