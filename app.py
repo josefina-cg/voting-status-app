@@ -52,14 +52,18 @@ st.markdown(
 )
 
 # ---- LOAD DATA FROM GOOGLE SHEETS ----
-sheet_url = "https://docs.google.com/spreadsheets/d/17m1Km09QjTSH2fia8rPyqx393DiUv2eLJ5z7cTxiV74/export?format=csv&gid=2002531286"
+sheet_url = "https://docs.google.com/spreadsheets/d/1bLu7UgEt7aS9a39tUYUt9n6_fSjNc5qQ/export?format=csv"
 
 @st.cache_data
 def load_data():
     return pd.read_csv(sheet_url, header=1)
 
 data = load_data()
+data.columns = data.columns.str.strip()
 
+# Optional: show column names and preview data
+st.write("🧪 Columns:", data.columns.tolist())
+st.write("📄 Sample Data:", data.head())
 # Defensive programming: ensure data loaded correctly
 if not data.empty:
     data.columns = data.columns.str.strip()
