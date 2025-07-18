@@ -61,6 +61,10 @@ def load_data():
 data = load_data()
 data.columns = data.columns.str.strip()
 
+# DEBUGGING: Print the first few rows of the sheet
+st.write("🧪 Preview of loaded data:")
+st.write(data.head())
+
 # ---- STYLES FOR BIG INPUT FIELD ----
 st.markdown("""
     <style>
