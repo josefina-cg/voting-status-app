@@ -59,6 +59,8 @@ def load_data():
     return pd.read_csv(sheet_url)
 
 data = load_data()
+st.write("🧪 Preview of loaded data:")
+st.write(data.head())
 
 # Defensive programming: ensure data loaded correctly
 if not data.empty:
@@ -92,26 +94,19 @@ st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
 # ---- CHECK VOTING STATUS ----
 if user_id:
-    # Try to find the RUT column
-    rut_col = [col for col in data.columns if "rut" in col.lower()]
-    if not rut_col:
-        st.error("❌ No se encontró la columna de RUT.")
-    else:
-        # Clean RUTs
-        clean_ruts = data[rut_col[0]].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
-        input_rut = user_id.strip().replace('\u00a0', '').upper()
-        result = data[clean_ruts == input_rut]
+    # Clean both the RUT column and user input
+    data["RUT_clean"] = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
+    user_input_clean = user_id.strip().replace('\u00a0', '').upper()
 
-        if result.empty:
-            st.error("Su RUT no fue encontrado en nuestros registros.")
-        else:
-            # Find the Status column
-            status_col = [col for col in data.columns if "status" in col.lower()]
-            if not status_col:
-                st.error("❌ No se encontró la columna de estado.")
-            else:
-                status = result.iloc[0][status_col[0]]
-                st.success(f"Estado: {status}")
+    # Check match
+    result = data[data["RUT_clean"] == user_input_clean]
+
+    if not result.empty:
+        status = result.iloc[0]["Status"]
+        st.success(f"Estado: {status}")
+    else:
+        st.error("Su RUT no fue encontrado en nuestros registros.")
+
 
     # Optional debug
     # st.write("🔍 Cleaned RUTs:", clean_ruts.tolist())
