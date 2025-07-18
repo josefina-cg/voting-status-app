@@ -59,8 +59,6 @@ def load_data():
     return pd.read_csv(sheet_url)
 
 data = load_data()
-st.write("🧪 Preview of loaded data:")
-st.write(data.head())
 
 # Defensive programming: ensure data loaded correctly
 if not data.empty:
@@ -93,24 +91,27 @@ user_id = st.text_input(label="", key="rut_input", placeholder="Ej: 12345678-9",
 st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
 # ---- CHECK VOTING STATUS ----
+# ---- CHECK VOTING STATUS ----
 if user_id:
-    # Clean both the RUT column and user input
-    data["RUT_clean"] = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
-    user_input_clean = user_id.strip().replace('\u00a0', '').upper()
+    # Clean column and input: trim, remove non-breaking spaces, and make uppercase
+    clean_ruts = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
+    input_rut = user_id.strip().replace('\u00a0', '').upper()
 
-    # Check match
-    result = data[data["RUT_clean"] == user_input_clean]
+    # Optional debug
+    # st.write("🔍 Cleaned RUTs:", clean_ruts.tolist())
+    # st.write("🔍 Input RUT:", input_rut)
+
+    # Compare
+    result = data[clean_ruts == input_rut]
 
     if not result.empty:
         status = result.iloc[0]["Status"]
         st.success(f"Estado: {status}")
     else:
         st.error("Su RUT no fue encontrado en nuestros registros.")
-
-
     # Optional debug
-    # st.write("🔍 Cleaned RUTs:", clean_ruts.tolist())
-    # st.write("🔍 Input RUT:", input_rut)
+    st.write("🔍 Cleaned RUTs:", clean_ruts.tolist())
+    st.write("🔍 Input RUT:", input_rut)
 
     # Compare
     result = data[clean_ruts == input_rut]
