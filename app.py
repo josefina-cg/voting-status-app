@@ -9,14 +9,14 @@ def load_data():
 data = load_data()
 
 # Title
-st.title("Voting Status Checker")
+st.title("¡Revisa si tu voto fue registrado!")
 
 # Input field for ID number
-user_id = st.text_input("Enter your ID number:")
+user_id = st.text_input("Ingresa tu RUT:")
 
 # Check the status
 if user_id:
-    result = data[data["ID Number"].astype(str) == user_id]
+    result = data[data["RUN"].astype(str) == user_id]
     if not result.empty:
         status = result.iloc[0]["Status"]
         st.success(f"Status: {status}")
