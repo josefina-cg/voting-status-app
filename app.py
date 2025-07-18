@@ -52,7 +52,7 @@ st.markdown(
 )
 
 # ---- LOAD DATA FROM GOOGLE SHEETS ----
-sheet_url = "https://docs.google.com/spreadsheets/d/1bLu7UgEt7aS9a39tUYUt9n6_fSjNc5qQ/export?format=csv"
+sheet_url = "https://docs.google.com/spreadsheets/d/17m1Km09QjTSH2fia8rPyqx393DiUv2eLJ5z7cTxiV74/export?format=csv&gid=2002531286"
 
 @st.cache_data
 def load_data():
