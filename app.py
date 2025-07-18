@@ -3,13 +3,22 @@ import pandas as pd
 
 
 # ---- HEADER ----
+# Page config
 st.set_page_config(page_title="Voting Status Checker", layout="centered")
 
-# Add image and organization name
-st.image("logo.png", use_container_width=True)  # Updated here
-st.markdown("<h1 style='text-align: center; color: black;'>Sindicato Interempresa Salud UC</h1>", unsafe_allow_html=True)
+# --- HEADER with logo and organization name ---
+col1, col2 = st.columns([1, 4])  # Adjust width ratio as needed
 
-st.markdown("---")  # Horizontal line
+with col1:
+    st.image("logo.png", width=100)  # Use your local logo image
+
+with col2:
+    st.markdown(
+        "<h1 style='margin-top: 20px; font-size: 32px;'>Sindicato Interempresa Salud UC</h1>",
+        unsafe_allow_html=True
+    )
+
+st.markdown("<hr>", unsafe_allow_html=True)
 
 # ---- DATA LOADING ----
 
