@@ -37,7 +37,8 @@ def load_data():
 data = load_data()
 
 # ---- USER INPUT ----
-user_id = st.text_input("Ingresa tu RUT:")
+st.markdown("<p style='font-size:22px;'>Ingresa tu RUT:</p>", unsafe_allow_html=True)
+user_id = st.text_input(label="", key="rut_input")
 
 # ---- CHECK VOTING STATUS ----
 if user_id:
