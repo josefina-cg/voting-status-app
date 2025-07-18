@@ -21,4 +21,4 @@ if user_id:
         status = result.iloc[0]["Status"]
         st.success(f"Status: {status}")
     else:
-        st.error("ID number not found.")
+        st.error("Su RUT no fue encontrado en nuestros registros.")
