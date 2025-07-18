@@ -88,3 +88,41 @@ if user_id:
         st.success(f"Estado: {status}")
     else:
         st.error("Su RUT no fue encontrado en nuestros registros.")
+
+# ---- FOOTER: CONTACT INFO ----
+st.markdown("""
+    <style>
+    .footer {
+        position: fixed;
+        bottom: 10px;
+        right: 20px;
+        background-color: #f9f9f9;
+        padding: 10px 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: #333;
+    }
+    .footer img {
+        width: 30px;
+        height: auto;
+    }
+    .footer a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .footer a:hover {
+        text-decoration: underline;
+    }
+    </style>
+
+    <div class="footer">
+        <img src="https://raw.githubusercontent.com/josefina-cg/voting-status-app/main/logo.png" alt="Logo">
+        <span>¿Necesitas ayuda? Contáctanos al Whatsapp: <a href="https://wa.me/56923987722" target="_blank">+56 9 2398 7722</a></span>
+    </div>
+""", unsafe_allow_html=
+
