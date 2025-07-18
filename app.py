@@ -36,7 +36,7 @@ st.markdown("""
     </style>
 
     <div class="header-container">
-        <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/logo.png" alt="Logo">
+        <img src="https://github.com/josefina-cg/voting-status-app/blob/main/logo.png" alt="Logo">
         <p class="header-title">Sindicato Interempresa Salud UC</p>
     </div>
     <hr>
