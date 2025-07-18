@@ -3,11 +3,11 @@ import pandas as pd
 
 
 # ---- HEADER ----
-st.set_page_config(page_title="Sindicato Interempresa Salud UC", layout="centered")
+st.set_page_config(page_title="Voting Status Checker", layout="centered")
 
 # Add image and organization name
-st.image("logo.png", use_column_width=True)  # or set width=300
-st.markdown("<h1 style='text-align: center; color: black;'>Your Organization Name</h1>", unsafe_allow_html=True)
+st.image("logo.png", use_container_width=True)  # Updated here
+st.markdown("<h1 style='text-align: center; color: black;'>Sindicato Interempresa Salud UC</h1>", unsafe_allow_html=True)
 
 st.markdown("---")  # Horizontal line
 
