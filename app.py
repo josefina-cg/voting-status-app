@@ -46,7 +46,7 @@ st.markdown("""
 st.markdown(
     """
     <h2 style='text-align: center; font-size: 36px;'>Votación Oferta del Empleador - 20 de julio</h2>
-    <p style='text-align: center; font-size: 20px;'>¡Revisa si tu voto fue registrado!</p>
+    <p style='text-align: center; font-size: 20px;'>¡Confirme si tu voto fue registrado!</p>
     """,
     unsafe_allow_html=True
 )
