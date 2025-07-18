@@ -8,7 +8,7 @@ st.set_page_config(page_title="Voting Status Checker", layout="centered")
 col1, col2 = st.columns([1, 4])
 
 with col1:
-    st.image("logo.png", width=100)  # Make sure logo.png is in the same folder
+    st.image("logo.png", width=100)  # Make sure logo.png is in the same folder or repo
 
 with col2:
     st.markdown(
@@ -18,7 +18,7 @@ with col2:
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# ---- TITLES ----
+# ---- MAIN TITLE + SUBTITLE ----
 st.markdown(
     """
     <h2 style='text-align: center; font-size: 36px;'>Oferta del Empleador - 20 de julio</h2>
@@ -36,7 +36,7 @@ def load_data():
 
 data = load_data()
 
-# ---- CUSTOM STYLING FOR INPUT FIELD ----
+# ---- STYLES FOR BIG INPUT FIELD ----
 st.markdown("""
     <style>
     .big-input input {
@@ -47,12 +47,16 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ---- RUT INPUT ----
-st.markdown("<p style='font-size:22px;'>Ingresa tu RUT:</p>", unsafe_allow_html=True)
-user_id = st.text_input(label="", key="rut_input", placeholder="Ej: 12345678-9", label_visibility="collapsed")
-st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)  # Apply size class
+# ---- RUT INPUT SECTION ----
+st.markdown("""
+    <p style='font-size:22px; margin-bottom: 0;'>Ingresa tu RUT:</p>
+    <p style='font-size:14px; margin-top: 2px; color: gray;'>sin puntos y con guión</p>
+""", unsafe_allow_html=True)
 
-# ---- CHECK STATUS ----
+user_id = st.text_input(label="", key="rut_input", placeholder="Ej: 12345678-9", label_visibility="collapsed")
+st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
+
+# ---- CHECK VOTING STATUS ----
 if user_id:
     result = data[data["RUT"].astype(str) == user_id]
     if not result.empty:
