@@ -1,6 +1,18 @@
 import streamlit as st
 import pandas as pd
 
+
+# ---- HEADER ----
+st.set_page_config(page_title="Sindicato Interempresa Salud UC", layout="centered")
+
+# Add image and organization name
+st.image("logo.png", use_column_width=True)  # or set width=300
+st.markdown("<h1 style='text-align: center; color: black;'>Your Organization Name</h1>", unsafe_allow_html=True)
+
+st.markdown("---")  # Horizontal line
+
+# ---- DATA LOADING ----
+
 # Replace with your Google Sheet export link
 sheet_url = "https://docs.google.com/spreadsheets/d/1bLu7UgEt7aS9a39tUYUt9n6_fSjNc5qQ/export?format=csv"
 
