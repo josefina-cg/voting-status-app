@@ -5,18 +5,43 @@ import pandas as pd
 st.set_page_config(page_title="Voting Status Checker", layout="centered")
 
 # ---- HEADER: LOGO + ORG NAME ----
-col1, col2 = st.columns([1, 4])
+# ---- HEADER: LOGO + ORG NAME (Mobile-friendly) ----
+st.markdown("""
+    <style>
+    .header-container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: nowrap;
+    }
+    .header-container img {
+        width: 60px;
+        height: auto;
+    }
+    .header-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+        line-height: 1.2;
+    }
+    @media (max-width: 768px) {
+        .header-container {
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+        }
+        .header-container img {
+            margin-bottom: 10px;
+        }
+    }
+    </style>
 
-with col1:
-    st.image("logo.png", width=100)  # Make sure logo.png is in the same folder or repo
-
-with col2:
-    st.markdown(
-        "<h1 style='margin-top: 20px; font-size: 32px;'>Sindicato Interempresa Salud UC</h1>",
-        unsafe_allow_html=True
-    )
-
-st.markdown("<hr>", unsafe_allow_html=True)
+    <div class="header-container">
+        <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/logo.png" alt="Logo">
+        <p class="header-title">Sindicato Interempresa Salud UC</p>
+    </div>
+    <hr>
+""", unsafe_allow_html=True)
 
 # ---- MAIN TITLE + SUBTITLE ----
 st.markdown(
