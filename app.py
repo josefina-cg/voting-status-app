@@ -84,24 +84,31 @@ st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 # ---- CHECK VOTING STATUS ----
 
 if user_id:
+    # Clean column and input: trim, remove non-breaking spaces, and make uppercase
     clean_ruts = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
-    input_rut = user_id.strip().replace(u'\xa0', '').upper()
+    input_rut = user_id.strip().replace('\u00a0', '').upper()
 
     result = data[clean_ruts == input_rut]
 
-if not result.empty:
-    status = result.iloc[0]["Status"].strip().lower()
+    if not result.empty:
+        status = result.iloc[0][0].strip().lower()
 
-    if status == "votó":
-        st.markdown(f"<div style='color: green; font-size: 24px; font-weight: bold;'>✅ Estado: Votó</div>", unsafe_allow_html=True)
-    elif status == "no ha votado":
-        st.markdown(f"<div style='color: red; font-size: 24px; font-weight: bold;'>❌ Estado: No ha Votado</div>", unsafe_allow_html=True)
+        if status == "votó":
+            st.markdown("""
+                <div style="background-color:#d4edda; padding:20px; border-radius:8px; color:#155724; font-size:22px; font-weight:bold;">
+                    ✅ Estado: Votó
+                </div>
+            """, unsafe_allow_html=True)
+        elif status == "no ha votado":
+            st.markdown("""
+                <div style="background-color:#f8d7da; padding:20px; border-radius:8px; color:#721c24; font-size:22px; font-weight:bold;">
+                    ❌ Estado: No ha Votado
+                </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.info(f"Estado: {status}")
     else:
-        st.info(f"Estado: {status}")
-else:
-    st.error("Su RUT no fue encontrado en nuestros registros.")
-
-
+        st.error("Su RUT no fue encontrado en nuestros registros.")
 
 # ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
 st.markdown("""
