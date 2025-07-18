@@ -1,10 +1,13 @@
 import streamlit as st
 import pandas as pd
 
+# Replace with your Google Sheet export link
+sheet_url = "https://docs.google.com/spreadsheets/d/1bLu7UgEt7aS9a39tUYUt9n6_fSjNc5qQ/edit?usp=sharing&ouid=115455914725839001108&rtpof=true&sd=true"
+
 # Load the Excel file
 @st.cache_data
 def load_data():
-    return pd.read_excel("voting_status.xlsx")
+    return pd.read_csv(sheet_url)
 
 data = load_data()
 
