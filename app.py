@@ -46,7 +46,7 @@ st.markdown("""
 st.markdown(
     """
     <h2 style='text-align: center; font-size: 36px;'>Votación Oferta del Empleador - 20 de julio</h2>
-    <p style='text-align: center; font-size: 20px;'>¡Confirme si tu voto fue registrado!</p>
+    <p style='text-align: center; font-size: 20px;'>¡Confirma si tu voto fue registrado!</p>
     """,
     unsafe_allow_html=True
 )
@@ -89,7 +89,7 @@ if user_id:
     else:
         st.error("Su RUT no fue encontrado en nuestros registros.")
 
-# ---- FOOTER: CENTERED CONTACT INFO ----
+# ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
 st.markdown("""
     <style>
     .footer {
@@ -98,32 +98,52 @@ st.markdown("""
         left: 50%;
         transform: translateX(-50%);
         background-color: #f9f9f9;
-        padding: 10px 15px;
+        padding: 12px 20px;
         border-radius: 8px;
         box-shadow: 0 0 5px rgba(0,0,0,0.1);
         display: flex;
         align-items: center;
-        gap: 10px;
+        justify-content: center;
+        gap: 12px;
         font-size: 14px;
         color: #333;
         z-index: 9999;
+        max-width: 90%;
+        text-align: left;
     }
+
     .footer img {
         width: 30px;
         height: auto;
+        flex-shrink: 0;
     }
+
+    .footer span {
+        display: inline-block;
+        max-width: 85vw;
+        line-height: 1.4;
+    }
+
     .footer a {
         color: #007bff;
         text-decoration: none;
         font-weight: bold;
     }
+
     .footer a:hover {
         text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+        .footer {
+            font-size: 13px;
+            padding: 12px;
+        }
     }
     </style>
 
     <div class="footer">
         <img src="https://raw.githubusercontent.com/josefina-cg/voting-status-app/main/BallotBox%20Logo.png" alt="Logo">
-        <span>¿Necesitas ayuda?<br>Contáctanos al Whatsapp: <a href="https://wa.me/56923987722" target="_blank">+56 9 2398 7722</a></span>
+        <span>¿Necesitas ayuda? Contáctanos al Whatsapp: <a href="https://wa.me/56923987722" target="_blank">+56 9 2398 7722</a></span>
     </div>
 """, unsafe_allow_html=True)
