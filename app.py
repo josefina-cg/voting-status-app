@@ -59,6 +59,7 @@ def load_data():
     return pd.read_csv(sheet_url)
 
 data = load_data()
+data.columns = data.columns.str.strip()
 
 # ---- STYLES FOR BIG INPUT FIELD ----
 st.markdown("""
@@ -82,7 +83,7 @@ st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
 # ---- CHECK VOTING STATUS ----
 if user_id:
-    result = data[data["RUT"].astype(str) == user_id]
+    result = data[data["RUT"].astype(str).str.strip() == user_id.strip()]
     if not result.empty:
         status = result.iloc[0]["Status"]
         st.success(f"Estado: {status}")
