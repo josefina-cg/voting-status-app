@@ -91,15 +91,25 @@ user_id = st.text_input(label="", key="rut_input", placeholder="Ej: 12345678-9",
 st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
 # ---- CHECK VOTING STATUS ----
-if user_id:
-    input_rut = user_id.strip().replace(u'\xa0', '').upper()
-    match = data[data["RUT"] == input_rut]
+ist.write("🧪 Columns:", data.columns.tolist())
+st.write("🧪 Sample Data:")
+st.write(data.head())
 
-    if not match.empty:
-        status = match.iloc[0]["Status"]
+if user_id:
+    clean_ruts = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
+    input_rut = user_id.strip().replace(u'\xa0', '').upper()
+
+    result = data[clean_ruts == input_rut]
+
+    st.write("🧪 Input RUT:", input_rut)
+    st.write("🧪 Result found:", result)
+
+    if not result.empty:
+        status = result.iloc[0]["Status"]
         st.success(f"Estado: {status}")
     else:
         st.error("Su RUT no fue encontrado en nuestros registros.")
+
 
 # ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
 st.markdown("""
