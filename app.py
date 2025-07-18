@@ -56,23 +56,12 @@ sheet_url = "https://docs.google.com/spreadsheets/d/1bLu7UgEt7aS9a39tUYUt9n6_fSj
 
 @st.cache_data
 def load_data():
-    return pd.read_csv(sheet_url, header=1)
+    return pd.read_csv(sheet_url, header=1)  # Make sure header is row 2
 
 data = load_data()
-data.columns = data.columns.str.strip()
+data.columns = data.columns.str.strip()  # Remove trailing spaces
 
-# Optional: show column names and preview data
-st.write("🧪 Columns:", data.columns.tolist())
-st.write("📄 Sample Data:", data.head())
-# Defensive programming: ensure data loaded correctly
-if not data.empty:
-    data.columns = data.columns.str.strip()
-    st.write("📄 Columnas detectadas:", data.columns.tolist())
-else:
-    st.error("❌ No se pudo cargar la información desde la hoja de cálculo.")
-# DEBUGGING: Print the first few rows of the sheet
-st.write("🧪 Preview of loaded data:")
-st.write(data.head())
+st.write("🧪 Columns:", data.columns.tolist())  # See exactly what they are
 
 # ---- STYLES FOR BIG INPUT FIELD ----
 st.markdown("""
