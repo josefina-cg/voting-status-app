@@ -105,6 +105,7 @@ st.markdown("""
         gap: 10px;
         font-size: 14px;
         color: #333;
+        z-index: 9999;
     }
     .footer img {
         width: 30px;
@@ -121,8 +122,9 @@ st.markdown("""
     </style>
 
     <div class="footer">
-        <img src="https://raw.githubusercontent.com/josefina-cg/voting-status-app/main/logo.png" alt="Logo">
+        <img src="https://raw.githubusercontent.com/josefina-cg/voting-status-app/main/BallotBox%20Logo.png" alt="Logo">
         <span>¿Necesitas ayuda? Contáctanos al Whatsapp: <a href="https://wa.me/56923987722" target="_blank">+56 9 2398 7722</a></span>
     </div>
-""", unsafe_allow_html=
+""", unsafe_allow_html=True)
+
 
