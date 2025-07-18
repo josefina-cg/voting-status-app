@@ -92,36 +92,22 @@ st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
 # ---- CHECK VOTING STATUS ----
 # ---- CHECK VOTING STATUS ----
+# ---- CHECK VOTING STATUS ----
 if user_id:
-    # Clean column and input: trim, remove non-breaking spaces, and make uppercase
-    clean_ruts = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
+    # Create a cleaned version of the RUT column
+    data["RUT_clean"] = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
+
+    # Clean the user input RUT
     input_rut = user_id.strip().replace('\u00a0', '').upper()
 
-    # Optional debug
-    # st.write("🔍 Cleaned RUTs:", clean_ruts.tolist())
-    # st.write("🔍 Input RUT:", input_rut)
-
-    # Compare
-    result = data[clean_ruts == input_rut]
+    # Compare cleaned input with cleaned column
+    result = data[data["RUT_clean"] == input_rut]
 
     if not result.empty:
         status = result.iloc[0]["Status"]
         st.success(f"Estado: {status}")
     else:
         st.error("Su RUT no fue encontrado en nuestros registros.")
-    # Optional debug
-    st.write("🔍 Cleaned RUTs:", clean_ruts.tolist())
-    st.write("🔍 Input RUT:", input_rut)
-
-    # Compare
-    result = data[clean_ruts == input_rut]
-
-    if not result.empty:
-        status = result.iloc[0]["Status"]
-        st.success(f"Estado: {status}")
-    else:
-        st.error("Su RUT no fue encontrado en nuestros registros.")
-
 
 # ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
 st.markdown("""
