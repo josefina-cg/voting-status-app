@@ -56,7 +56,7 @@ sheet_url = "https://docs.google.com/spreadsheets/d/17m1Km09QjTSH2fia8rPyqx393Di
 
 @st.cache_data
 def load_data():
-    return pd.read_csv(sheet_url)
+    return pd.read_csv(sheet_url, header=1)
 
 data = load_data()
 
