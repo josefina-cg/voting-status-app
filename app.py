@@ -91,7 +91,7 @@ user_id = st.text_input(label="", key="rut_input", placeholder="Ej: 12345678-9",
 st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
 # ---- CHECK VOTING STATUS ----
-ist.write("🧪 Columns:", data.columns.tolist())
+st.write("🧪 Columns:", data.columns.tolist())
 st.write("🧪 Sample Data:")
 st.write(data.head())
 
