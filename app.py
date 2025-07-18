@@ -86,7 +86,6 @@ user_id = st.text_input(label="", key="rut_input", placeholder="Ej: 12345678-9",
 st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
 # ---- CHECK VOTING STATUS ----
-# ---- CHECK VOTING STATUS ----
 if user_id:
     # Clean column and input: trim, remove non-breaking spaces, and make uppercase
     clean_ruts = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
@@ -98,20 +97,13 @@ if user_id:
 
     # Compare
     result = data[clean_ruts == input_rut]
-    
+
     if not result.empty:
         status = result.iloc[0]["Status"]
         st.success(f"Estado: {status}")
     else:
         st.error("Su RUT no fue encontrado en nuestros registros.")
 
-# Do the comparison
-result = data[clean_ruts == input_rut]
-    if not result.empty:
-        status = result.iloc[0]["Status"]
-        st.success(f"Estado: {status}")
-    else:
-        st.error("Su RUT no fue encontrado en nuestros registros.")
 
 # ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
 st.markdown("""
