@@ -19,7 +19,7 @@ user_id = st.text_input("Ingresa tu RUT:")
 
 # Check the status
 if user_id:
-    result = data[data["RUN"].astype(str) == user_id]
+    result = data[data["RUT"].astype(str) == user_id]
     if not result.empty:
         status = result.iloc[0]["Status"]
         st.success(f"Status: {status}")
