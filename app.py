@@ -59,8 +59,13 @@ def load_data():
     return pd.read_csv(sheet_url)
 
 data = load_data()
-data.columns = data.columns.str.strip()
 
+# Defensive programming: ensure data loaded correctly
+if not data.empty:
+    data.columns = data.columns.str.strip()
+    st.write("📄 Columnas detectadas:", data.columns.tolist())
+else:
+    st.error("❌ No se pudo cargar la información desde la hoja de cálculo.")
 # DEBUGGING: Print the first few rows of the sheet
 st.write("🧪 Preview of loaded data:")
 st.write(data.head())
@@ -87,9 +92,26 @@ st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
 # ---- CHECK VOTING STATUS ----
 if user_id:
-    # Clean column and input: trim, remove non-breaking spaces, and make uppercase
-    clean_ruts = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
-    input_rut = user_id.strip().replace('\u00a0', '').upper()
+    # Try to find the RUT column
+    rut_col = [col for col in data.columns if "rut" in col.lower()]
+    if not rut_col:
+        st.error("❌ No se encontró la columna de RUT.")
+    else:
+        # Clean RUTs
+        clean_ruts = data[rut_col[0]].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
+        input_rut = user_id.strip().replace('\u00a0', '').upper()
+        result = data[clean_ruts == input_rut]
+
+        if result.empty:
+            st.error("Su RUT no fue encontrado en nuestros registros.")
+        else:
+            # Find the Status column
+            status_col = [col for col in data.columns if "status" in col.lower()]
+            if not status_col:
+                st.error("❌ No se encontró la columna de estado.")
+            else:
+                status = result.iloc[0][status_col[0]]
+                st.success(f"Estado: {status}")
 
     # Optional debug
     # st.write("🔍 Cleaned RUTs:", clean_ruts.tolist())
