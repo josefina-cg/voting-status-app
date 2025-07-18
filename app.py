@@ -89,11 +89,18 @@ if user_id:
 
     result = data[clean_ruts == input_rut]
 
-    if not result.empty:
-        status = result.iloc[0]["Status"]
-        st.success(f"Estado: {status}")
+if not result.empty:
+    status = result.iloc[0]["Status"].strip().lower()
+
+    if status == "votó":
+        st.markdown(f"<div style='color: green; font-size: 24px; font-weight: bold;'>✅ Estado: Votó</div>", unsafe_allow_html=True)
+    elif status == "no ha votado":
+        st.markdown(f"<div style='color: red; font-size: 24px; font-weight: bold;'>❌ Estado: No ha Votado</div>", unsafe_allow_html=True)
     else:
-        st.error("Su RUT no fue encontrado en nuestros registros.")
+        st.info(f"Estado: {status}")
+else:
+    st.error("Su RUT no fue encontrado en nuestros registros.")
+
 
 
 # ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
