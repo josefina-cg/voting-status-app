@@ -35,18 +35,17 @@ st.markdown("""
         }
     }
     </style>
-""", unsafe_allow_html=True)  # ✅ this line was missing
+""", unsafe_allow_html=True)
 
-    </style>
-
+# ✅ This is a new separate block — don't combine with the above
 st.markdown("""
     <div class="header-container">
         <img src="https://raw.githubusercontent.com/josefina-cg/voting-status-app/main/logo.png" alt="Logo">
         <p class="header-title">Sindicato Interempresa Salud UC</p>
     </div>
     <hr>
-    
-""", unsafe_allow_html=True)  # ← Correct closing here
+""", unsafe_allow_html=True)
+
 
 # ---- MAIN TITLE + SUBTITLE ----
 st.markdown("""
