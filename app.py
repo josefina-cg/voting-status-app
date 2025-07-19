@@ -77,6 +77,20 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# ---- CLEAN HEADERS AND VALUES ----
+data.columns = data.columns.str.strip()
+
+# Normalize 'RUT' and 'Estado' values
+data["RUT"] = data["RUT"].astype(str)\
+    .str.replace(u'\xa0', '', regex=True)\
+    .str.strip()\
+    .str.upper()
+
+data["Estado"] = data["Estado"].astype(str)\
+    .str.replace(u'\xa0', '', regex=True)\
+    .str.strip()\
+    .str.lower()
+
 # ---- RUT INPUT SECTION ----
 import streamlit as st
 import pandas as pd
