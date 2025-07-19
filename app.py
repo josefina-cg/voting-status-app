@@ -5,6 +5,7 @@ import pandas as pd
 st.set_page_config(page_title="Sindicato Interempresa Salud UC", layout="centered")
 
 # ---- HEADER: LOGO + ORG NAME (Mobile-friendly Flexbox) ----
+# ---- HEADER: LOGO + ORG NAME (Mobile-friendly Flexbox) ----
 st.markdown("""
     <style>
     .header-container {
@@ -33,6 +34,9 @@ st.markdown("""
             margin-bottom: 10px;
         }
     }
+    </style>
+""", unsafe_allow_html=True)  # ✅ this line was missing
+
     </style>
 
 st.markdown("""
