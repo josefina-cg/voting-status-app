@@ -86,18 +86,22 @@ st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
 # ---- CHECK VOTING Estado ----
 
-# Clean headers
+# Clean column headers
 data.columns = data.columns.str.strip()
 
-# Clean and normalize RUT input
-clean_ruts = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
+# Normalize columns
+data["RUT"] = data["RUT"].astype(str).str.replace(u'\xa0', '', regex=True).str.strip().str.upper()
+data["Status"] = data["Status"].astype(str).str.strip().str.lower()
+
+# Normalize input
 input_rut = user_id.strip().replace('\u00a0', '').upper()
 
-# Find matching row
-result = data[clean_ruts == input_rut]
+# Match row
+result = data[data["RUT"] == input_rut]
+
 
 if not result.empty:
-    status = result["Status"].values[0].strip().lower()
+    status = result["Status"].values[0]
 
     if status == "votó":
         st.markdown("""
@@ -112,13 +116,14 @@ if not result.empty:
             </div>
         """, unsafe_allow_html=True)
     else:
-        st.info(f"Estado desconocido: {Estado}")
+        st.info(f"Estado desconocido: {status}")
 else:
     st.markdown("""
         <div style="background-color:#000000; padding:20px; border-radius:8px; color:#ffffff; font-size:20px; font-weight:bold;">
             ⚠️ Su RUT no fue encontrado en nuestros registros.
         </div>
     """, unsafe_allow_html=True)
+
 
 # ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
 st.markdown("""
