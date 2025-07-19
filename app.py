@@ -86,7 +86,8 @@ st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
 # ---- CHECK VOTING Estado ----
 
-# Clean column headers
+result = data[data["RUT"] == input_rut]
+input_rut = user_id.strip().replace('\u00a0', '').upper()
 
 if not result.empty:
     Estado = result["Estado"].values[0]
