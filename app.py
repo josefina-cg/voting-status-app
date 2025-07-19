@@ -36,7 +36,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ✅ This is a new separate block — don't combine with the above
 st.markdown("""
     <div class="header-container">
         <img src="https://raw.githubusercontent.com/josefina-cg/voting-status-app/main/logo.png" alt="Logo">
@@ -44,7 +43,6 @@ st.markdown("""
     </div>
     <hr>
 """, unsafe_allow_html=True)
-
 
 # ---- MAIN TITLE + SUBTITLE ----
 st.markdown("""
@@ -54,16 +52,24 @@ st.markdown("""
 
 # ---- LOAD DATA FROM GOOGLE SHEETS ----
 sheet_url = "https://docs.google.com/spreadsheets/d/17m1Km09QjTSH2fia8rPyqx393DiUv2eLJ5z7cTxiV74/export?format=csv&gid=2002531286"
-df = pd.read_csv(sheet_url)
-
-st.dataframe(df)
 
 @st.cache_data
 def load_data():
-    return pd.read_csv(sheet_url)  # Make sure header is row 2
+    return pd.read_csv(sheet_url)
 
 data = load_data()
-data.columns = data.columns.str.strip()  # Remove trailing spaces
+data.columns = data.columns.str.strip()
+
+# ---- CLEAN DATA ----
+data["RUT"] = data["RUT"].astype(str)\
+    .str.replace(u'\xa0', '', regex=True)\
+    .str.strip()\
+    .str.upper()
+
+data["Estado"] = data["Estado"].astype(str)\
+    .str.replace(u'\xa0', '', regex=True)\
+    .str.strip()\
+    .str.lower()
 
 # ---- STYLES FOR BIG INPUT FIELD ----
 st.markdown("""
@@ -76,43 +82,15 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ---- RUT INPUT SECTION ----
-import streamlit as st
-import pandas as pd
-
-# Load your Google Sheet or CSV here
-# data = pd.read_csv(SHEET_URL)
-# Assuming it's already loaded into 'data'
-
-# Clean headers
-data.columns = data.columns.str.strip()
-
-# Normalize 'RUT' and 'Estado' values
-data["RUT"] = data["RUT"].astype(str)\
-    .str.replace(u'\xa0', '', regex=True)\
-    .str.strip()\
-    .str.upper()
-
-data["Estado"] = data["Estado"].astype(str)\
-    .str.replace(u'\xa0', '', regex=True)\
-    .str.strip()\
-    .str.lower()
-
-# Clean column values
-data["RUT"] = data["RUT"].astype(str).str.replace(u'\xa0', '', regex=True).str.strip().str.upper()
-data["Estado"] = data["Estado"].astype(str).str.strip().str.lower()
-
-# Input field
+# ---- RUT INPUT + MATCHING ----
 user_id = st.text_input("Ingresa tu RUT:", "").strip()
+input_rut = user_id.replace('\u00a0', '').strip().upper()
 
-# Normalize input RUT
-input_rut = user_id.replace('\u00a0', '').upper()
-
-# Match RUT
 result = data[data["RUT"] == input_rut]
 
 if not result.empty:
     estado = result["Estado"].values[0]
+    estado = str(estado).replace('\u00a0', '').strip().lower()
 
     if estado == "votó":
         st.markdown("""
@@ -135,8 +113,7 @@ elif user_id != "":
         </div>
     """, unsafe_allow_html=True)
 
-
-# ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
+# ---- FOOTER ----
 st.markdown("""
     <style>
     .footer {
