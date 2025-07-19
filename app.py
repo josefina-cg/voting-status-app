@@ -76,16 +76,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---- RUT INPUT SECTION ----
-st.markdown("""
-    <p style='font-size:22px; margin-bottom: 0;'>Ingresa tu RUT:</p>
-    <p style='font-size:14px; margin-top: 2px; color: gray;'>Sin puntos y con guión</p>
-""", unsafe_allow_html=True)
-
-user_id = st.text_input(label="", key="rut_input", placeholder="Ej: 12345678-9", label_visibility="collapsed")
-st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
-
-# ---- CHECK VOTING Estado ----
-
 # Clean headers
 data.columns = data.columns.str.strip()
 
@@ -97,31 +87,31 @@ data["Estado"] = data["Estado"].astype(str).str.strip().str.lower()
 input_rut = user_id.strip().replace('\u00a0', '').upper()
 
 # Filter result
-result = data[data["RUT"] == input_rut]  # ✅ define result first
+result = data[data["RUT"] == input_rut]
 
 if not result.empty:
-    Estado = result["Estado"].values[0]
+    estado = result["Estado"].values[0]
 
-    if Estado == "Votó":
+    if estado == "votó":
         st.markdown("""
             <div style="background-color:#d4edda; padding:20px; border-radius:8px; color:#155724; font-size:22px; font-weight:bold;">
                 ✅ Estado: Votó
             </div>
         """, unsafe_allow_html=True)
-    elif Estado == "No ha votado":
+    elif estado == "no ha votado":
         st.markdown("""
             <div style="background-color:#f8d7da; padding:20px; border-radius:8px; color:#721c24; font-size:22px; font-weight:bold;">
                 ❌ Estado: No ha Votado
             </div>
         """, unsafe_allow_html=True)
     else:
-         st.markdown("""
+        st.info(f"Estado desconocido: {estado}")
+else:
+    st.markdown("""
         <div style="background-color:#000000; padding:20px; border-radius:8px; color:#ffffff; font-size:20px; font-weight:bold;">
             ⚠️ Su RUT no fue encontrado en nuestros registros.
         </div>
-        """, unsafe_allow_html=True)
-
-
+    """, unsafe_allow_html=True)
 
 # ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
 st.markdown("""
