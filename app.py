@@ -113,7 +113,7 @@ if not result.empty:
     elif estado == "su voto no fue registrado. vuelva a votar.":
         st.markdown("""
             <div style="background-color:#000000; padding:20px; border-radius:8px; color:#ffffff; font-size:22px; font-weight:bold;">
-                ⚠️ Su RUT no fue encontrado en nuestros registros.
+                ⚠️ Su voto no fue registrado. Vuelva a votar. 
             </div>
         """, unsafe_allow_html=True)
     else:
