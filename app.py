@@ -110,6 +110,11 @@ if not result.empty:
                 ❌ Estado: No ha Votado
             </div>
         """, unsafe_allow_html=True)
+    elif estado == "su voto no fue registrado. vuelva a votar.":
+    st.markdown("""
+        <div style="background-color:#fff3cd; padding:20px; border-radius:8px; color:#856404; font-size:22px; font-weight:bold;">
+            ⚠️ Estado: Su voto no fue registrado. Vuelva a votar.
+        </div>
     else:
         st.info(f"Estado desconocido: {estado}")
 elif user_id != "":
