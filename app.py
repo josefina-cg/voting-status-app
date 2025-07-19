@@ -36,7 +36,7 @@ st.markdown("""
     </style>
 
     <div class="header-container">
-        <img src="https://raw.githubusercontent.com/josefina-cg/voting-status-app/main/logo.png" alt="Logo">
+        <img src="https://raw.githubusercontent.com/josefina-cg/voting-Estado-app/main/logo.png" alt="Logo">
         <p class="header-title">Sindicato Interempresa Salud UC</p>
     </div>
     <hr>
@@ -84,7 +84,7 @@ st.markdown("""
 user_id = st.text_input(label="", key="rut_input", placeholder="Ej: 12345678-9", label_visibility="collapsed")
 st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
-# ---- CHECK VOTING STATUS ----
+# ---- CHECK VOTING Estado ----
 
 # Clean headers
 data.columns = data.columns.str.strip()
@@ -97,22 +97,22 @@ input_rut = user_id.strip().replace('\u00a0', '').upper()
 result = data[clean_ruts == input_rut]
 
 if not result.empty:
-    status = result["Status"].values[0].strip().lower()
+    Estado = result["Estado"].values[0].strip().lower()
 
-    if status == "votó":
+    if Estado == "votó":
         st.markdown("""
             <div style="background-color:#d4edda; padding:20px; border-radius:8px; color:#155724; font-size:22px; font-weight:bold;">
                 ✅ Estado: Votó
             </div>
         """, unsafe_allow_html=True)
-    elif status == "no ha votado":
+    elif Estado == "no ha votado":
         st.markdown("""
             <div style="background-color:#f8d7da; padding:20px; border-radius:8px; color:#721c24; font-size:22px; font-weight:bold;">
                 ❌ Estado: No ha Votado
             </div>
         """, unsafe_allow_html=True)
     else:
-        st.info(f"Estado desconocido: {status}")
+        st.info(f"Estado desconocido: {Estado}")
 else:
     st.markdown("""
         <div style="background-color:#000000; padding:20px; border-radius:8px; color:#ffffff; font-size:20px; font-weight:bold;">
@@ -174,7 +174,7 @@ st.markdown("""
     </style>
 
     <div class="footer">
-        <img src="https://raw.githubusercontent.com/josefina-cg/voting-status-app/main/BallotBox%20Logo.png" alt="Logo">
+        <img src="https://raw.githubusercontent.com/josefina-cg/voting-Estado-app/main/BallotBox%20Logo.png" alt="Logo">
         <span>¿Necesitas ayuda? Contáctanos al Whatsapp: <a href="https://wa.me/56923987722" target="_blank">+56 9 2398 7722</a></span>
     </div>
 """, unsafe_allow_html=True)
