@@ -45,7 +45,7 @@ st.markdown("""
 # ---- MAIN TITLE + SUBTITLE ----
 st.markdown(
     """
-    <h2 style='text-align: center; font-size: 36px;'>Votación Oferta del Empleador - 20 de julio</h2>
+    <h2 style='text-align: center; font-size: 36px;'>Nueva Oferta del Empleador</h2>
     <p style='text-align: center; font-size: 20px;'>¡Confirma si tu voto fue registrado!</p>
     """,
     unsafe_allow_html=True
