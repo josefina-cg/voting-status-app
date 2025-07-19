@@ -66,8 +66,6 @@ data = load_data()
 data = load_data()
 data.columns = data.columns.str.strip()
 
-st.subheader("🧾 Tabla completa de votación")
-st.dataframe(data)
 # ---- CLEAN DATA ----
 data["RUT"] = data["RUT"].astype(str)\
     .str.replace(u'\xa0', '', regex=True)\
