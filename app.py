@@ -103,13 +103,13 @@ result = data[data["RUT"] == input_rut]
 if not result.empty:
     status = result["Status"].values[0]
 
-    if status == "votó":
+    if status == "Votó":
         st.markdown("""
             <div style="background-color:#d4edda; padding:20px; border-radius:8px; color:#155724; font-size:22px; font-weight:bold;">
                 ✅ Estado: Votó
             </div>
         """, unsafe_allow_html=True)
-    elif status == "no ha votado":
+    elif status == "No ha Votado":
         st.markdown("""
             <div style="background-color:#f8d7da; padding:20px; border-radius:8px; color:#721c24; font-size:22px; font-weight:bold;">
                 ❌ Estado: No ha Votado
