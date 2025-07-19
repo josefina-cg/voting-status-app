@@ -51,9 +51,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---- LOAD DATA FROM GOOGLE SHEETS ----
+import time
 sheet_url = "https://docs.google.com/spreadsheets/d/17m1Km09QjTSH2fia8rPyqx393DiUv2eLJ5z7cTxiV74/export?format=csv&gid=2002531286"
 
-@st.cache_data
 def load_data():
     return pd.read_csv(sheet_url)
     
