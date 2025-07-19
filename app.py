@@ -102,25 +102,24 @@ result = data[data["RUT"] == input_rut]  # ✅ define result first
 if not result.empty:
     Estado = result["Estado"].values[0]
 
-    if Estado == "votó":
+    if Estado == "Votó":
         st.markdown("""
             <div style="background-color:#d4edda; padding:20px; border-radius:8px; color:#155724; font-size:22px; font-weight:bold;">
                 ✅ Estado: Votó
             </div>
         """, unsafe_allow_html=True)
-    elif Estado == "no ha votado":
+    elif Estado == "No ha votado":
         st.markdown("""
             <div style="background-color:#f8d7da; padding:20px; border-radius:8px; color:#721c24; font-size:22px; font-weight:bold;">
                 ❌ Estado: No ha Votado
             </div>
         """, unsafe_allow_html=True)
     else:
-        st.info(f"Estado desconocido: {Estado}")
-else:
-    st.markdown("""
+         st.markdown("""
         <div style="background-color:#000000; padding:20px; border-radius:8px; color:#ffffff; font-size:20px; font-weight:bold;">
             ⚠️ Su RUT no fue encontrado en nuestros registros.
         </div>
+        
     """, unsafe_allow_html=True)
 
 
