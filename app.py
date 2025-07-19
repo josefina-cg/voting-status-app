@@ -87,14 +87,15 @@ st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 # ---- CHECK VOTING STATUS ----
 
 if user_id:
-    # Clean column and input: trim, remove non-breaking spaces, and make uppercase
+    data.columns = data.columns.str.strip()  # clean headers
+    # Clean column and input
     clean_ruts = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
     input_rut = user_id.strip().replace('\u00a0', '').upper()
 
     result = data[clean_ruts == input_rut]
 
     if not result.empty:
-        status = result.iloc[0][0].strip().lower()
+        status = result["Estado"].values[0].strip().lower()
 
         if status == "votó":
             st.markdown("""
@@ -109,13 +110,7 @@ if user_id:
                 </div>
             """, unsafe_allow_html=True)
         else:
-            st.info(f"Estado: {status}")
-    else:
-        st.markdown("""
-    <div style="background-color:#000000; padding:20px; border-radius:8px; color:#ffffff; font-size:20px; font-weight:bold;">
-        ⚠️ Su RUT no fue encontrado en nuestros registros.
-    </div>
-""", unsafe_allow_html=True)
+            st.info(f"Estado desconocido: {status}")
 
 # ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
 st.markdown("""
