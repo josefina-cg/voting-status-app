@@ -86,31 +86,43 @@ st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 
 # ---- CHECK VOTING Estado ----
 
-result = data[data["RUT"] == input_rut]
+# Clean headers
+data.columns = data.columns.str.strip()
+
+# Clean values
+data["RUT"] = data["RUT"].astype(str).str.replace(u'\xa0', '', regex=True).str.strip().str.upper()
+data["Status"] = data["Status"].astype(str).str.strip().str.lower()
+
+# Get input
 input_rut = user_id.strip().replace('\u00a0', '').upper()
 
-if not result.empty:
-    Estado = result["Estado"].values[0]
+# Filter result
+result = data[data["RUT"] == input_rut]  # ✅ define result first
 
-    if Estado == "Votó":
+if not result.empty:
+    status = result["Status"].values[0]
+
+    if status == "votó":
         st.markdown("""
             <div style="background-color:#d4edda; padding:20px; border-radius:8px; color:#155724; font-size:22px; font-weight:bold;">
                 ✅ Estado: Votó
             </div>
         """, unsafe_allow_html=True)
-    elif Estado == "No ha Votado":
+    elif status == "no ha votado":
         st.markdown("""
             <div style="background-color:#f8d7da; padding:20px; border-radius:8px; color:#721c24; font-size:22px; font-weight:bold;">
                 ❌ Estado: No ha Votado
             </div>
         """, unsafe_allow_html=True)
-    
+    else:
+        st.info(f"Estado desconocido: {status}")
 else:
     st.markdown("""
         <div style="background-color:#000000; padding:20px; border-radius:8px; color:#ffffff; font-size:20px; font-weight:bold;">
             ⚠️ Su RUT no fue encontrado en nuestros registros.
         </div>
     """, unsafe_allow_html=True)
+
 
 
 # ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
