@@ -76,17 +76,27 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---- RUT INPUT SECTION ----
+import streamlit as st
+import pandas as pd
+
+# Load your Google Sheet or CSV here
+# data = pd.read_csv(SHEET_URL)
+# Assuming it's already loaded into 'data'
+
 # Clean headers
 data.columns = data.columns.str.strip()
 
-# Clean values
+# Clean column values
 data["RUT"] = data["RUT"].astype(str).str.replace(u'\xa0', '', regex=True).str.strip().str.upper()
 data["Estado"] = data["Estado"].astype(str).str.strip().str.lower()
 
-# Get input
-input_rut = user_id.strip().replace('\u00a0', '').upper()
+# Input field
+user_id = st.text_input("Ingresa tu RUT:", "").strip()
 
-# Filter result
+# Normalize input RUT
+input_rut = user_id.replace('\u00a0', '').upper()
+
+# Match RUT
 result = data[data["RUT"] == input_rut]
 
 if not result.empty:
@@ -106,12 +116,13 @@ if not result.empty:
         """, unsafe_allow_html=True)
     else:
         st.info(f"Estado desconocido: {estado}")
-else:
+elif user_id != "":
     st.markdown("""
         <div style="background-color:#000000; padding:20px; border-radius:8px; color:#ffffff; font-size:20px; font-weight:bold;">
             ⚠️ Su RUT no fue encontrado en nuestros registros.
         </div>
     """, unsafe_allow_html=True)
+
 
 # ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
 st.markdown("""
