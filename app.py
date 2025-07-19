@@ -54,15 +54,15 @@ st.markdown("""
 import time
 sheet_url = "https://docs.google.com/spreadsheets/d/17m1Km09QjTSH2fia8rPyqx393DiUv2eLJ5z7cTxiV74/export?format=csv&gid=2002531286"
 
+@st.cache_data
 def load_data():
     return pd.read_csv(sheet_url)
     
 # 🔁 Refresh button
 if st.button("🔄 Refrescar datos"):
-    st.cache_data.clear()  # This clears the cache
-    st.experimental_rerun()  # This reloads the app with fresh data
+    st.cache_data.clear()
 
-data = load_data()
+# Load data AFTER refresh logic
 data = load_data()
 data.columns = data.columns.str.strip()
 
