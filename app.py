@@ -5,7 +5,6 @@ import pandas as pd
 st.set_page_config(page_title="Sindicato Interempresa Salud UC", layout="centered")
 
 # ---- HEADER: LOGO + ORG NAME (Mobile-friendly Flexbox) ----
-# ---- HEADER: LOGO + ORG NAME (Mobile-friendly Flexbox) ----
 st.markdown("""
     <style>
     .header-container {
@@ -77,7 +76,15 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ---- CLEAN HEADERS AND VALUES ----
+# ---- RUT INPUT SECTION ----
+import streamlit as st
+import pandas as pd
+
+# Load your Google Sheet or CSV here
+# data = pd.read_csv(SHEET_URL)
+# Assuming it's already loaded into 'data'
+
+# Clean headers
 data.columns = data.columns.str.strip()
 
 # Normalize 'RUT' and 'Estado' values
@@ -90,17 +97,6 @@ data["Estado"] = data["Estado"].astype(str)\
     .str.replace(u'\xa0', '', regex=True)\
     .str.strip()\
     .str.lower()
-
-# ---- RUT INPUT SECTION ----
-import streamlit as st
-import pandas as pd
-
-# Load your Google Sheet or CSV here
-# data = pd.read_csv(SHEET_URL)
-# Assuming it's already loaded into 'data'
-
-# Clean headers
-data.columns = data.columns.str.strip()
 
 # Clean column values
 data["RUT"] = data["RUT"].astype(str).str.replace(u'\xa0', '', regex=True).str.strip().str.upper()
