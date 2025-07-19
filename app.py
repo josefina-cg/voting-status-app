@@ -97,15 +97,15 @@ input_rut = user_id.strip().replace('\u00a0', '').upper()
 result = data[clean_ruts == input_rut]
 
 if not result.empty:
-    Estado = result["Estado"].values[0].strip().lower()
+    status = result["Status"].values[0].strip().lower()
 
-    if Estado == "votó":
+    if status == "votó":
         st.markdown("""
             <div style="background-color:#d4edda; padding:20px; border-radius:8px; color:#155724; font-size:22px; font-weight:bold;">
                 ✅ Estado: Votó
             </div>
         """, unsafe_allow_html=True)
-    elif Estado == "no ha votado":
+    elif status == "no ha votado":
         st.markdown("""
             <div style="background-color:#f8d7da; padding:20px; border-radius:8px; color:#721c24; font-size:22px; font-weight:bold;">
                 ❌ Estado: No ha Votado
