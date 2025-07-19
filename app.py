@@ -58,8 +58,12 @@ def load_data():
     return pd.read_csv(sheet_url)
 
 data = load_data()
+st.write("✅ Columnas cargadas:", data.columns.tolist())
+st.write("🔍 Primeras filas:", data.head())
 data.columns = data.columns.str.strip()
 
+st.subheader("🧾 Tabla completa de votación")
+st.dataframe(data)
 # ---- CLEAN DATA ----
 data["RUT"] = data["RUT"].astype(str)\
     .str.replace(u'\xa0', '', regex=True)\
