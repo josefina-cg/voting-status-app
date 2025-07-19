@@ -89,18 +89,15 @@ st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 # Clean headers
 data.columns = data.columns.str.strip()
 
-# Debug: print column names
-st.write("Column names:", data.columns.tolist())
-
-# Prepare data
+# Clean and normalize RUT input
 clean_ruts = data["RUT"].astype(str).str.strip().str.replace(u'\xa0', '', regex=True).str.upper()
 input_rut = user_id.strip().replace('\u00a0', '').upper()
 
+# Find matching row
 result = data[clean_ruts == input_rut]
 
 if not result.empty:
-    # safest: use position
-    status = result.iloc[0, 0].strip().lower()
+    status = result["Status"].values[0].strip().lower()
 
     if status == "votó":
         st.markdown("""
@@ -122,6 +119,7 @@ else:
             ⚠️ Su RUT no fue encontrado en nuestros registros.
         </div>
     """, unsafe_allow_html=True)
+
 # ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
 st.markdown("""
     <style>
