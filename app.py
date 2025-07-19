@@ -87,18 +87,6 @@ st.markdown('<div class="big-input"></div>', unsafe_allow_html=True)
 # ---- CHECK VOTING Estado ----
 
 # Clean column headers
-data.columns = data.columns.str.strip()
-
-# Normalize columns
-data["RUT"] = data["RUT"].astype(str).str.replace(u'\xa0', '', regex=True).str.strip().str.upper()
-data["Estado"] = data["Estado"].astype(str).str.strip().str.lower()
-
-# Normalize input
-input_rut = user_id.strip().replace('\u00a0', '').upper()
-
-# Match row
-result = data[data["RUT"] == input_rut]
-
 
 if not result.empty:
     Estado = result["Estado"].values[0]
@@ -115,8 +103,7 @@ if not result.empty:
                 ❌ Estado: No ha Votado
             </div>
         """, unsafe_allow_html=True)
-    else:
-        st.info(f"Estado desconocido: {Estado}")
+    
 else:
     st.markdown("""
         <div style="background-color:#000000; padding:20px; border-radius:8px; color:#ffffff; font-size:20px; font-weight:bold;">
