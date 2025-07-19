@@ -76,7 +76,13 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ---- INPUT FIELD & MATCHING LOGIC ----
+# ---- RUT INPUT SECTION ----
+import streamlit as st
+import pandas as pd
+
+# Load your Google Sheet or CSV here
+# data = pd.read_csv(SHEET_URL)
+# Assuming it's already loaded into 'data'
 
 # Clean headers
 data.columns = data.columns.str.strip()
@@ -92,20 +98,21 @@ data["Estado"] = data["Estado"].astype(str)\
     .str.strip()\
     .str.lower()
 
-st.write("Estado detectado:", estado)
+# Clean column values
+data["RUT"] = data["RUT"].astype(str).str.replace(u'\xa0', '', regex=True).str.strip().str.upper()
+data["Estado"] = data["Estado"].astype(str).str.strip().str.lower()
 
 # Input field
 user_id = st.text_input("Ingresa tu RUT:", "").strip()
 
 # Normalize input RUT
-input_rut = user_id.replace('\u00a0', '').strip().upper()
+input_rut = user_id.replace('\u00a0', '').upper()
 
 # Match RUT
 result = data[data["RUT"] == input_rut]
 
 if not result.empty:
     estado = result["Estado"].values[0]
-    estado = str(estado).replace('\u00a0', '').strip().lower()  # <-- THIS FIXES YOUR ISSUE
 
     if estado == "votó":
         st.markdown("""
@@ -127,7 +134,7 @@ elif user_id != "":
             ⚠️ Su RUT no fue encontrado en nuestros registros.
         </div>
     """, unsafe_allow_html=True)
-    
+
 
 # ---- FOOTER: CENTERED AND MOBILE-OPTIMIZED ----
 st.markdown("""
