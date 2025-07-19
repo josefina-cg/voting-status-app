@@ -64,8 +64,6 @@ if st.button("🔄 Refrescar datos"):
 
 data = load_data()
 data = load_data()
-st.write("✅ Columnas cargadas:", data.columns.tolist())
-st.write("🔍 Primeras filas:", data.head())
 data.columns = data.columns.str.strip()
 
 st.subheader("🧾 Tabla completa de votación")
