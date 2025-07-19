@@ -45,13 +45,11 @@ st.markdown("""
 """, unsafe_allow_html=True)  # ← Correct closing here
 
 # ---- MAIN TITLE + SUBTITLE ----
-st.markdown(
-    """
+st.markdown("""
     <h2 style='text-align: center; font-size: 36px;'>Nueva Oferta del Empleador</h2>
     <p style='text-align: center; font-size: 20px;'>¡Confirma si tu voto fue registrado!</p>
-    """,
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
+
 
 # ---- LOAD DATA FROM GOOGLE SHEETS ----
 sheet_url = "https://docs.google.com/spreadsheets/d/17m1Km09QjTSH2fia8rPyqx393DiUv2eLJ5z7cTxiV74/export?format=csv&gid=2002531286"
