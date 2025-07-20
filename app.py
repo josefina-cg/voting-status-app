@@ -127,7 +127,7 @@ if not result.empty:
         """, unsafe_allow_html=True)
     else:
         st.info(f"Estado desconocido: {estado}")
-elif user_id != "":
+elif rut != "":
     st.markdown("""
         <div style="background-color:#000000; padding:20px; border-radius:8px; color:#ffffff; font-size:20px; font-weight:bold;">
             ⚠️ Su RUT no fue encontrado en nuestros registros.
