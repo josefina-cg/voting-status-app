@@ -90,10 +90,11 @@ st.markdown("""
 
 # ---- RUT INPUT + MATCHING ----
 user_id = st.text_input("Ingresa tu RUT:", "").strip()
+st.markdown("<small style='color: gray;'>sin puntos y con guión</small>", unsafe_allow_html=True)
 input_rut = user_id.replace('\u00a0', '').strip().upper()
 
 result = data[data["RUT"] == input_rut]
-st.markdown("<small style='color: gray;'>sin puntos y con guión</small>", unsafe_allow_html=True)
+
 
 if not result.empty:
     estado = result["Estado"].values[0]
