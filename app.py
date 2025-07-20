@@ -89,6 +89,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---- RUT INPUT + MATCHING ----
+t.markdown("""
+<div style="background-color:#fff3cd; padding:15px; border-radius:8px; color:#856404; font-size:18px; font-weight:500; margin-bottom:10px;">
+⚠️ En estos momentos, la participación no está actualizada. Se actualizará nuevamente a las 7:00 AM.
+</div>
+""", unsafe_allow_html=True)
+
 st.markdown("""
     <label for="rut_input" style="font-weight: bold; font-size: 16px;">
         Ingresa tu RUT<br>
