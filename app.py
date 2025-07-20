@@ -105,7 +105,7 @@ st.markdown("""
         Ingresa tu RUT
     </div>
     <div style="font-size: 14px; color: gray; margin-bottom: 10px;">
-        sin puntos y con guión
+        *Sin puntos y con guión*
     </div>
 """, unsafe_allow_html=True)
 
