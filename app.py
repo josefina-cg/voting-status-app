@@ -89,8 +89,15 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---- RUT INPUT + MATCHING ----
-user_id = st.text_input("Ingresa tu RUT:", "").strip()
-st.markdown("<small style='color: gray;'>sin puntos y con guión</small>", unsafe_allow_html=True)
+st.markdown("""
+    <label for="rut_input" style="font-weight: bold; font-size: 16px;">
+        Ingresa tu RUT<br>
+        <span style="font-size: 12px; color: gray;">sin puntos y con guión</span>
+    </label>
+""", unsafe_allow_html=True)
+
+rut = st.text_input(label="", key="rut_input")
+
 input_rut = user_id.replace('\u00a0', '').strip().upper()
 
 result = data[data["RUT"] == input_rut]
