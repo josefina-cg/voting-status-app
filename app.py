@@ -101,10 +101,12 @@ st.markdown("""
 # ---- RUT INPUT + MATCHING ----
 
 st.markdown("""
-    <label for="rut_input" style="font-weight: bold; font-size: 16px;">
-        Ingresa tu RUT<br>
-        <span style="font-size: 12px; color: gray;">sin puntos y con guión</span>
-    </label>
+    <div style="font-weight: bold; font-size: 24px; margin-bottom: 6px;">
+        Ingresa tu RUT
+    </div>
+    <div style="font-size: 14px; color: gray; margin-bottom: 10px;">
+        sin puntos y con guión
+    </div>
 """, unsafe_allow_html=True)
 
 rut = st.text_input(label="", key="rut_input")
