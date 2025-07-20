@@ -67,7 +67,7 @@ with refresh_col:
 
 with info_col:
     st.markdown("""
-        <div style="background-color:#fff3cd; padding:10px; border-radius:6px; color:#856404; font-size:15px; font-weight:500; border:1px solid #ffeeba;">
+        <div style="background-color:#fff3cd; padding:10px; border-radius:6px; color:#856404; font-size:15px; font-weight:500; border:1px solid #ffeeba; text-align: center;">
             📢 La participación se actualiza cada 5 minutos.
         </div>
     """, unsafe_allow_html=True)
