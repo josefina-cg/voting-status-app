@@ -96,9 +96,16 @@ st.markdown("""
     </label>
 """, unsafe_allow_html=True)
 
-rut = st.text_input(label="", key="rut_input")
+raw_rut = st.text_input(label="", key="rut_input")
 
-input_rut = rut.replace('\u00a0', '').strip().upper()
+# Automatically format RUT with hyphen before the last digit
+input_rut = ""
+if raw_rut:
+    clean_rut = raw_rut.replace(".", "").replace("-", "").replace('\u00a0', '').strip().upper()
+    if len(clean_rut) > 1:
+        input_rut = clean_rut[:-1] + "-" + clean_rut[-1]
+    else:
+        input_rut = clean_rut
 
 result = data[data["RUT"] == input_rut]
 
