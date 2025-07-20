@@ -58,11 +58,14 @@ sheet_url = "https://docs.google.com/spreadsheets/d/17m1Km09QjTSH2fia8rPyqx393Di
 def load_data():
     return pd.read_csv(sheet_url)
     
-# 🔁 Refresh button
-if st.button("🔄 Refrescar datos"):
-    st.cache_data.clear()
+# 🔁 Refresh button with yellow info box next to it
+refresh_col, info_col = st.columns([1, 4])  # Ajusta proporciones si lo deseas
 
-with col2:
+with refresh_col:
+    if st.button("🔄 Refrescar datos"):
+        st.cache_data.clear()
+
+with info_col:
     st.markdown("""
         <div style="background-color:#fff3cd; padding:10px; border-radius:6px; color:#856404; font-size:16px; font-weight:500; border:1px solid #ffeeba;">
             📢 La participación se actualiza cada 5 minutos.
