@@ -98,7 +98,7 @@ st.markdown("""
 
 rut = st.text_input(label="", key="rut_input")
 
-input_rut = user_id.replace('\u00a0', '').strip().upper()
+input_rut = rut.replace('\u00a0', '').strip().upper()
 
 result = data[data["RUT"] == input_rut]
 
