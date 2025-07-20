@@ -62,6 +62,13 @@ def load_data():
 if st.button("🔄 Refrescar datos"):
     st.cache_data.clear()
 
+with col2:
+    st.markdown("""
+        <div style="background-color:#fff3cd; padding:10px; border-radius:6px; color:#856404; font-size:16px; font-weight:500; border:1px solid #ffeeba;">
+            📢 La participación se actualiza cada 5 minutos.
+        </div>
+    """, unsafe_allow_html=True)
+
 # Load data AFTER refresh logic
 data = load_data()
 data.columns = data.columns.str.strip()
