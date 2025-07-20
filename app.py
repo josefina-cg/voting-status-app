@@ -104,7 +104,7 @@ if not result.empty:
                 ✅ Estado: Votó
             </div>
         """, unsafe_allow_html=True)
-    elif estado == "no ha votado"
+    elif estado == "no ha votado":
         st.markdown("""
             <div style="background-color:#f8d7da; padding:20px; border-radius:8px; color:#721c24; font-size:22px; font-weight:bold;">
                 ❌ Estado: Su voto no fue registrado. Vuelva a ingresar y votar
