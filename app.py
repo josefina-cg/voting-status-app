@@ -46,7 +46,7 @@ st.markdown("""
 
 # ---- MAIN TITLE + SUBTITLE ----
 st.markdown("""
-    <h2 style='text-align: center; font-size: 36px;'>Propuesta Final en la Dirección del Trabajo - 21 de Julio</h2>
+    <h2 style='text-align: center; font-size: 36px;'>OFERTA 21 DE JULIO</h2>
     <p style='text-align: center; font-size: 20px;'>¡Confirma si tu voto fue registrado!</p>
 """, unsafe_allow_html=True)
 
